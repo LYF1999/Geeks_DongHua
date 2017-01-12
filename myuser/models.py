@@ -17,7 +17,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(u'用户名', max_length=255, unique=True)
     email = models.CharField(u'邮箱', max_length=255, blank=True, null=True)
     full_name = models.CharField(u'姓名', max_length=255)
-    tel = models.CharField(u'电话', max_length=255)
+    tel = models.CharField(u'电话', max_length=255, unique=True)
     sex = models.IntegerField(choices=Sex_Choice, default=3)
 
     qq = models.CharField(u'QQ号', max_length=255)
