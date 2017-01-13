@@ -1,5 +1,4 @@
 # coding=utf-8
-from django.contrib.auth import authenticate
 from rest_framework import serializers
 
 from myuser.models import User

@@ -99,3 +99,4 @@ ENV/
 .ropeproject
 
 /config/localsetting.py
+/media/

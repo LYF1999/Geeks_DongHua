@@ -19,9 +19,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     full_name = models.CharField(u'姓名', max_length=255)
     tel = models.CharField(u'电话', max_length=255, unique=True)
     sex = models.IntegerField(choices=Sex_Choice, default=3)
-
     qq = models.CharField(u'QQ号', max_length=255)
     birthday = models.DateField(u'生日', null=True, blank=True)
+    avator = models.ImageField('头像', upload_to='user/avators/',null=True, default=None)
 
     # permission
     is_member = models.BooleanField(u'社员', default=False)
@@ -51,5 +51,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         "Returns the short name for the user."
         return self.full_name.split()[0] if self.full_name else self.email
+
+    def get_avator_url(self):
+        return '/media/'.format(self.avator)
 
 # Create your models here.

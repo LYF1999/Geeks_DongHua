@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 AUTH_USER_MODEL = 'myuser.User'
 
 MY_APPS = [
-    'myuser'
+    'myuser',
+    'fix',
 ]
 
 MY_APPS = [APP + '.apps.' + APP[0].upper() + APP[1:] + 'Config' for APP in MY_APPS]
@@ -121,6 +122,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (

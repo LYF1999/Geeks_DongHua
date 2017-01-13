@@ -1,13 +1,12 @@
 # coding=utf-8
+from myuser.api.serializers import AccountSerializer
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import login
-
 from rest_framework import viewsets, permissions
+from rest_framework.decorators import list_route
 from rest_framework.response import Response
-from rest_framework.decorators import list_route, detail_route
 
-from accounts.api.serializers import AccountSerializer
-from accounts.api.forms import LoginForm, RegisterForm
+from myuser.api.forms import LoginForm, RegisterForm
 from myuser.models import User
 
 
@@ -22,7 +21,7 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
         serializer = AccountSerializer(user)
         return Response(serializer.data)
 
-    @list_route(methods=['POST'],serializer_class=(LoginForm), permission_classes=[permissions.AllowAny])
+    @list_route(methods=['POST'], serializer_class=LoginForm, permission_classes=[permissions.AllowAny])
     def login(self, request):
         form = LoginForm(data=request.data)
         form.is_valid(raise_exception=True)
@@ -38,4 +37,3 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
         form.is_valid(raise_exception=True)
         User.objects.create_user(username=form.username, password=form.password, tel=form.tel)
         return {'result': True, 'detail': form.data}
-

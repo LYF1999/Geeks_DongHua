@@ -4,6 +4,6 @@ from __future__ import unicode_literals
 from django.apps import AppConfig
 
 
-class FixConfig(AppConfig):
-    name = 'fix'
-    verbose_name = '维修'
+class BlogConfig(AppConfig):
+    name = 'blog'
+    verbose_name = '博客'

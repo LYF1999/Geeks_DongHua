@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from config.router import router
+from django.conf.urls.static import static
 
+from config import settings
+from config.router import router
 from home import index
 
 urlpatterns = [
@@ -25,5 +27,6 @@ urlpatterns = [
     url(r'^api/', include(router.urls, namespace='rest_framework')),
 
     # url(r'^$|^.+', index),
-
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

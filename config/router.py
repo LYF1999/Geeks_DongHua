@@ -1,5 +1,8 @@
 from rest_framework import routers
-from accounts.api.views import AccountViewSet
+
+from myuser.api.views import AccountViewSet
+from fix.api.views import FixViewSet
 
 router = routers.DefaultRouter()
-router.register(r'account',AccountViewSet)
+router.register(r'user', AccountViewSet)
+router.register(r'fix', FixViewSet)
