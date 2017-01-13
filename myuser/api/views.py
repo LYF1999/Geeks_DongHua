@@ -1,7 +1,9 @@
 # coding=utf-8
+from __future__ import unicode_literals
 from myuser.api.serializers import AccountSerializer
 from django.contrib.auth import authenticate
-from django.contrib.auth.views import login
+from django.contrib.auth import login, logout
+
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import list_route
 from rest_framework.response import Response
@@ -25,15 +27,26 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
     def login(self, request):
         form = LoginForm(data=request.data)
         form.is_valid(raise_exception=True)
-        user = authenticate(username=form.username, password=form.password)
+        user = authenticate(username=form.data['username'], password=form.data['password'])
         if user and user.is_authenticated:
             login(request, user)
-            return {'result': True}
-        return {'result': False, 'detail': u'账户或者密码错误'}
+            return Response({'result': True})
+        return Response({'result': False, 'detail': '账户或者密码错误'})
 
-    @list_route(methods=['POST'], serializer_class=(RegisterForm), permission_classes=[permissions.AllowAny])
+    @list_route(methods=['POST'], serializer_class=RegisterForm, permission_classes=[permissions.AllowAny])
     def register(self, request):
         form = RegisterForm(data=request.data)
         form.is_valid(raise_exception=True)
-        User.objects.create_user(username=form.username, password=form.password, tel=form.tel)
-        return {'result': True, 'detail': form.data}
+        user = User.objects.create_user(
+            username=form.data['username'],
+            password=form.data['password'],
+            tel=form.data['tel'],
+            full_name=form.data['name']
+        )
+        login(request, user)
+        return Response({'result': True, 'detail': form.data})
+
+    @list_route(methods=['GET'], permission_classes=[permissions.AllowAny])
+    def logout(self, request):
+        logout(request)
+        return Response({'result': True})

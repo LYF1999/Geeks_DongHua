@@ -12,18 +12,13 @@ class LoginForm(serializers.Serializer):
 class RegisterForm(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
-    repeat_password = serializers.CharField()
     tel = serializers.CharField()
+    name = serializers.CharField()
 
     def validate_username(self, username):
         if User.objects.filter(username=username).exists():
             raise serializers.ValidationError(u"该用户名已经注册")
         return username
-
-    def validate_password(self, password):
-        if self.initial_data['repeat_password'] != password:
-            raise serializers.ValidationError(u"两次密码输入不一致")
-        return password
 
     def validate_tel(self, tel):
         if User.objects.filter(tel=tel).exists():
