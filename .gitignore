@@ -100,3 +100,6 @@ ENV/
 
 /config/localsetting.py
 /media/
+/node_modules/
+/static/dist/
+tags

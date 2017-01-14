@@ -17,9 +17,13 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.IsAdminUser, permissions.DjangoObjectPermissions]
     queryset = User.objects.all()
 
-    @list_route(methods=['GET'], permission_classes=[permissions.IsAuthenticated])
+    @list_route(methods=['GET'], permission_classes=[permissions.AllowAny])
     def get_profile(self, request):
         user = request.user
+        if not user.is_authenticated():
+            return Response({
+                'auth': False
+            })
         serializer = AccountSerializer(user)
         return Response(serializer.data)
 

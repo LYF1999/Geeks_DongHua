@@ -26,7 +26,7 @@ urlpatterns = [
 
     url(r'^api/', include(router.urls, namespace='rest_framework')),
 
-    # url(r'^$|^.+', index),
+    url(r'^test.+', index),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
