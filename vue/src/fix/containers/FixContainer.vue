@@ -17,7 +17,7 @@
           </el-input>
         </div>
         <div class="input">
-          <el-input v-model="address" placeholder="请输入您的楼号">
+          <el-input v-model="dormNumber" placeholder="请输入您的楼号">
             <template slot="prepend">
               <span class="glyphicon glyphicon-send"></span>
             </template>
@@ -67,7 +67,7 @@
         },
         name: '',
         tel: '',
-        address: '',
+        dormNumber: '',
         fault: '',
         mark: '',
         dataSubmit: {
@@ -107,22 +107,22 @@
       handleSubmit: function (e) {
         let name = this.name
         let tel = this.tel
-        let dorm_number = this.address
+        let dormNumber = this.dormNumber
         let mark = this.mark
         let fault = this.fault
         let data = {
           name,
           tel,
-          dorm_number,
+          dorm_number: dormNumber,
           mark,
-          fault,
+          fault
         }
 
-        if (!this.checkData(data))return
+        if (!this.checkData(data)) return
         fetch(this.dataSubmit, '/api/fix/appointment/', {
           method: 'POST',
           headers: unsafeHeaders,
-          body: JSON.stringify(data),
+          body: JSON.stringify(data)
         }).then(data => {
           handelData(this.$message, data)
         }, () => {

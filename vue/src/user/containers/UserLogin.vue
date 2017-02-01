@@ -42,12 +42,12 @@
     },
     methods: {
       checkData: function (data) {
-        if(!data.username){
+        if (!data.username) {
           this.$message.error('用户名没有填写')
           return false
         }
 
-        if(!data.password){
+        if (!data.password) {
           this.$message.error('密码没有填写')
           return false
         }
@@ -60,7 +60,7 @@
           username,
           password
         }
-        if(!this.checkData(data))return
+        if (!this.checkData(data)) return
         fetch(this.loginData, '/api/user/login/', {
           method: 'POST',
           headers: unsafeHeaders,

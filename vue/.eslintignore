@@ -1,3 +1,4 @@
 webpack/*
 node_modules
 src/util/*
+src/main.js

@@ -24,14 +24,18 @@ module.exports = {
     loaders: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader!eslint-loader'
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: 'babel-loader!eslint-loader',
         include: [
           path.join(__dirname, '../src')
-        ]
+        ],
+        exclude: [
+          path.join(__dirname, '../src/util'),
+          path.join(__dirname, '../src/main.js')
+        ],
       },
       {
         test: /\.json$/,
@@ -58,7 +62,7 @@ module.exports = {
       }
     ]
   },
-  devtool: '#source-map'
+  devtool: '#eval-source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {

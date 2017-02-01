@@ -36,7 +36,7 @@
   import handleData from '../../util/handleData'
 
   export default{
-    data(){
+    data () {
       return {
         username: '',
         tel: '',
@@ -78,7 +78,7 @@
           tel
         }
 
-        if (!this.checkData(data))return
+        if (!this.checkData(data)) return
         fetch(this.registerData, '/api/user/register/', {
           method: 'POST',
           headers: unsafeHeaders,
