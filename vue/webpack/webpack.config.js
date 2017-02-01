@@ -1,4 +1,5 @@
 var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -7,60 +8,70 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../../static/dist/'),
     publicPath: '/staic/dist/',
-    filename: '[name]-[chunkhash].js'
+    filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.vue', '.json'],
-    fallback: [path.join(__dirname, '../../node_modules')],
+    extensions: ['.js', '.vue', '.json'],
+    modules: [path.join(__dirname, '../../node_modules')],
     alias: {
       'vue$': 'vue/dist/vue.common.js'
     }
   },
   resolveLoader: {
-    fallback: path.join(__dirname, '../../node_modules')
+    modules: [path.join(__dirname, '../../node_modules')]
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.vue$/,
-        loader: 'eslint',
-        include: [
-          path.join(__dirname, '../src')
-        ],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.js$/,
-        loader: 'eslint',
-        include: [
-          path.join(__dirname, '../src')
-        ],
-        exclude: [
-          /node_modules/,
-          /main.js/
-        ]
-      }
-    ],
     loaders: [
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         include: [
           path.join(__dirname, '../src')
-        ],
-        exclude: /node_modules/
+        ]
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!sass-loader'
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
+        loader: 'file-loader',
+        query: {
+          name: '[name].[ext]?[hash]'
+        }
       }
     ]
   },
-  eslint: {
-    formatter: require('eslint-friendly-formatter')
-  }
+  devtool: '#source-map'
+}
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
+  ])
 }

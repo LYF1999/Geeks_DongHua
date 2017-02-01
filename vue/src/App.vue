@@ -1,24 +1,26 @@
-<template>
-  <div id="app">
-    <Hello/>
-    <myHeader :user="user"/>
-  </div>
+<template xmlns="">
+<div id="app">
+  <myHeader :user="user" />
+  <slot></slot>
+</div>
 </template>
 
 <script>
-import Hello from './Hello'
 import myHeader from './share/header'
 import fetch from './util/restFetch'
+import './util/style/util.scss'
 
 export default {
   name: 'app',
   components: {
-    Hello,
     myHeader
   },
   data () {
     return {
-      user: {}
+      user: {
+        loading: false,
+        data: {}
+      }
     }
   },
   created: function () {
@@ -26,8 +28,8 @@ export default {
   },
   methods: {
     getUser: function () {
-      fetch('/api/user/get_profile/', (data) => {
-        this.user = data
+      fetch(this.user, '/api/user/get_profile/').then(data => {
+        console.log(data)
       })
     }
   }
@@ -41,6 +43,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

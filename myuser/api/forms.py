@@ -13,7 +13,6 @@ class RegisterForm(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
     tel = serializers.CharField()
-    name = serializers.CharField()
 
     def validate_username(self, username):
         if User.objects.filter(username=username).exists():

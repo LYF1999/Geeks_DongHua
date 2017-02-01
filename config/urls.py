@@ -20,13 +20,16 @@ from django.conf.urls.static import static
 from config import settings
 from config.router import router
 from home import index
+from fix.views import fix
 
 urlpatterns = [
     url(r'^admin/+', admin.site.urls),
 
     url(r'^api/', include(router.urls, namespace='rest_framework')),
 
-    url(r'^test.+', index),
+    url(r'^$', index, name='index'),
+    url(r'fix/$', fix),
+    url(r'user/', include('myuser.urls', namespace='myuser')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

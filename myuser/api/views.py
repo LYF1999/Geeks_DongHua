@@ -4,7 +4,7 @@ from myuser.api.serializers import AccountSerializer
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import list_route
 from rest_framework.response import Response
 
@@ -24,8 +24,9 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
             return Response({
                 'auth': False
             })
-        serializer = AccountSerializer(user)
-        return Response(serializer.data)
+        data = serializer = AccountSerializer(user).data
+        data['auth'] = True
+        return Response(data)
 
     @list_route(methods=['POST'], serializer_class=LoginForm, permission_classes=[permissions.AllowAny])
     def login(self, request):
@@ -34,8 +35,9 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
         user = authenticate(username=form.data['username'], password=form.data['password'])
         if user and user.is_authenticated:
             login(request, user)
-            return Response({'result': True})
-        return Response({'result': False, 'detail': '账户或者密码错误'})
+            redirect_url = '/'
+            return Response({'detail': redirect_url}, status=302)
+        return Response({'detail': '账户或者密码错误'}, status=status.HTTP_401_UNAUTHORIZED)
 
     @list_route(methods=['POST'], serializer_class=RegisterForm, permission_classes=[permissions.AllowAny])
     def register(self, request):
@@ -45,12 +47,11 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
             username=form.data['username'],
             password=form.data['password'],
             tel=form.data['tel'],
-            full_name=form.data['name']
         )
         login(request, user)
-        return Response({'result': True, 'detail': form.data})
+        return Response({'data': form.data}, status=302)
 
     @list_route(methods=['GET'], permission_classes=[permissions.AllowAny])
     def logout(self, request):
         logout(request)
-        return Response({'result': True})
+        return Response({'detail': ''}, status=302)

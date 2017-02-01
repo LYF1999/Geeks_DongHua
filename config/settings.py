@@ -24,7 +24,7 @@ SECRET_KEY = 'n^8_@i=^)0jwx_y0n06a#n7ijuv)pkxkr*pnyzy74)1s!2=bq8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -33,6 +33,7 @@ AUTH_USER_MODEL = 'myuser.User'
 MY_APPS = [
     'myuser',
     'fix',
+    'myglobal'
 ]
 
 MY_APPS = [APP + '.apps.' + APP[0].upper() + APP[1:] + 'Config' for APP in MY_APPS]
@@ -138,7 +139,7 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
 }
 
 try:
