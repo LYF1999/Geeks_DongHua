@@ -36,8 +36,8 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
         if user and user.is_authenticated:
             login(request, user)
             redirect_url = '/'
-            return Response({'detail': redirect_url}, status=302)
-        return Response({'detail': '账户或者密码错误'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'message': '您已成功登陆'}, status=status.HTTP_200_OK)
+        return Response({'message': '账户或者密码错误'}, status=status.HTTP_401_UNAUTHORIZED)
 
     @list_route(methods=['POST'], serializer_class=RegisterForm, permission_classes=[permissions.AllowAny])
     def register(self, request):
@@ -54,4 +54,4 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
     @list_route(methods=['GET'], permission_classes=[permissions.AllowAny])
     def logout(self, request):
         logout(request)
-        return Response({'detail': ''}, status=302)
+        return Response({'message': '您已注销'}, status=200)

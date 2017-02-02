@@ -1,7 +1,9 @@
 import Vue from 'vue'
-import App from './App'
+import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import Element from 'element-ui'
+import App from './App'
+import store from './store'
 import 'element-ui/lib/theme-default/index.css'
 
 import fixRouter from './fix/router'
@@ -10,6 +12,8 @@ import indexRouter from './index/router'
 
 Vue.use(Element)
 Vue.use(VueRouter)
+Vue.use(Vuex)
+
 
 const routes = [
   ...fixRouter,
@@ -25,6 +29,7 @@ Vue.config.debug = true
 
 new Vue({
   router,
+  store,
   el: '#app',
   template: `
     <div>

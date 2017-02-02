@@ -24,8 +24,7 @@
 </style>
 
 <script>
-  import fetch from '../../util/restFetch'
-  import { unsafeHeaders } from '../../util/header'
+  import { unsafeHeaders } from '../../util/headers'
   import handleData from '../../util/handleData'
 
   export default{
@@ -61,14 +60,14 @@
           password
         }
         if (!this.checkData(data)) return
-        fetch(this.loginData, '/api/user/login/', {
-          method: 'POST',
+        this.$store.dispatch('login', {
           headers: unsafeHeaders,
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
+          method: 'POST'
         }).then(data => {
           handleData(this.$message, data)
-        }, () => {
-          this.$message.error('垃圾程序员，毁我一生')
+          if (!data.status) this.$store.dispatch('profile')
+          this.$router.push('/')
         })
       }
     }

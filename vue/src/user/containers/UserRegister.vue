@@ -32,7 +32,7 @@
 
 <script>
   import fetch from '../../util/restFetch'
-  import { unsafeHeaders } from '../../util/header'
+  import { unsafeHeaders } from '../../util/headers'
   import handleData from '../../util/handleData'
 
   export default{

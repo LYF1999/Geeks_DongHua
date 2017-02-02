@@ -1,47 +1,49 @@
 <template xmlns="">
-<div id="app">
-  <myHeader :user="user" />
-  <slot></slot>
-</div>
+  <div id="app">
+    <myHeader :user="user"/>
+    <div class="main-container">
+      <slot></slot>
+    </div>
+  </div>
 </template>
 
-<script>
-import myHeader from './share/header'
-import fetch from './util/restFetch'
-import './util/style/util.scss'
-
-export default {
-  name: 'app',
-  components: {
-    myHeader
-  },
-  data () {
-    return {
-      user: {
-        loading: false,
-        data: {}
-      }
-    }
-  },
-  created: function () {
-    this.getUser()
-  },
-  methods: {
-    getUser: function () {
-      fetch(this.user, '/api/user/get_profile/').then(data => {
-        console.log(data)
-      })
-    }
+<style>
+  .main-container {
+    padding-top: 100px;
   }
-}
+</style>
+
+<script>
+  import { mapState } from 'vuex'
+  import myHeader from './share/header'
+  import './util/style/util.scss'
+
+  export default {
+    name: 'app',
+    components: {
+      myHeader
+    },
+    created: function () {
+      this.$store.dispatch('profile')
+    },
+    data () {
+      return {}
+    },
+    computed: {
+      ...mapState({
+        user: state => state.user.profile
+      })
+    },
+    methods: {}
+  }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
 </style>
