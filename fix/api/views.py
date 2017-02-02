@@ -25,7 +25,7 @@ class FixViewSet(viewsets.ModelViewSet):
         fix_status = FixStatus.get_fix_status()
 
         if not fix_status.status:
-            return Response({'detail': fix_status.message}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response({'message': fix_status.message}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
         form.save()
         return Response({'message': '成功预约', 'data': form.data}, status=200)
