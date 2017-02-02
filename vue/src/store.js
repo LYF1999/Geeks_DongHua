@@ -1,6 +1,3 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
 import user from './user/store'
 import project from './project/store'
 import fix from './fix/store'

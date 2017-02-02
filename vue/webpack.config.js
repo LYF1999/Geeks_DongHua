@@ -34,7 +34,8 @@ module.exports = {
         ],
         exclude: [
           path.join(__dirname, './src/util'),
-          path.join(__dirname, './src/main.js')
+          path.join(__dirname, './src/main.js'),
+          path.join(__dirname, './src/store.js')
         ]
       },
       {
