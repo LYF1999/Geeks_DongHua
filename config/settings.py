@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'n^8_@i=^)0jwx_y0n06a#n7ijuv)pkxkr*pnyzy74)1s!2=bq8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['www.dhu-gadu.com']
 
