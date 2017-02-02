@@ -4,7 +4,7 @@
   "description": "geeks_donghua",
   "scripts": {
     "watch": "python compile.py --debug;cross-env NODE_ENV=development webpack -w --config ./vue/webpack.config.js",
-    "build": "set NODE_ENV=production && webpack --progress --hide-modules --config ./vue/webpack.config.js && python compile.py --build"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./vue/webpack.config.js && python compile.py --build"
   },
   "repository": {
     "type": "git",
