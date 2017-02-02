@@ -2,9 +2,9 @@
   "name": "geeks_donghua",
   "version": "1.0.0",
   "description": "geeks_donghua",
-  "main": "main.js",
   "scripts": {
-    "watch": "cross-env NODE_ENV=development webpack -w --config ./vue/webpack/webpack.config.js"
+    "watch": "python compile.py --debug;cross-env NODE_ENV=development webpack -w --config ./vue/webpack.config.js",
+    "build": "set NODE_ENV=production && webpack --progress --hide-modules --config ./vue/webpack.config.js && python compile.py --build"
   },
   "repository": {
     "type": "git",
@@ -65,7 +65,6 @@
     "vue-loader": "^10.0.0",
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.1.0",
-    "webpack": "beta",
-    "webpack-dev-server": "beta"
+    "webpack": "beta"
   }
 }

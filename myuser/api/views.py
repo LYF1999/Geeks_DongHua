@@ -49,7 +49,7 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
             tel=form.data['tel'],
         )
         login(request, user)
-        return Response({'data': form.data}, status=302)
+        return Response({'message': '注册成功'}, status=200)
 
     @list_route(methods=['GET'], permission_classes=[permissions.AllowAny])
     def logout(self, request):

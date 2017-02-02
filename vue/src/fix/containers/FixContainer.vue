@@ -1,5 +1,6 @@
 <template>
   <div class="container" style="margin-top: 60px">
+    <h4>填写一下信息吧</h4>
     <el-form ref="form" class="clearfix" label-width="80px">
       <div class="col-sm-offset-3 col-sm-6">
         <div class="input">
@@ -58,7 +59,6 @@
   import handelData from '../../util/handleData'
 
   export default {
-    name: 'header',
     data: function () {
       return {
         faults: {
@@ -119,14 +119,12 @@
         }
 
         if (!this.checkData(data)) return
-        fetch(this.dataSubmit, '/api/fix/appointment/', {
+        this.$store.dispatch('appoint', {
           method: 'POST',
           headers: unsafeHeaders,
           body: JSON.stringify(data)
         }).then(data => {
           handelData(this.$message, data)
-        }, () => {
-          this.$message.error('程序员！出来背锅')
         })
       }
     }

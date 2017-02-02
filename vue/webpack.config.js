@@ -3,22 +3,22 @@ var webpack = require('webpack')
 
 module.exports = {
   entry: {
-    gadu: path.resolve(__dirname, '../src/main.js')
+    gadu: path.resolve(__dirname, './src/main.js')
   },
   output: {
-    path: path.resolve(__dirname, '../../static/dist/'),
+    path: path.resolve(__dirname, '../static/dist/'),
     publicPath: '/staic/dist/',
     filename: '[name].js'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
-    modules: [path.join(__dirname, '../../node_modules')],
+    modules: [path.join(__dirname, '../node_modules')],
     alias: {
       'vue$': 'vue/dist/vue.common.js'
     }
   },
   resolveLoader: {
-    modules: [path.join(__dirname, '../../node_modules')]
+    modules: [path.join(__dirname, '../node_modules')]
   },
   module: {
     loaders: [
@@ -30,12 +30,12 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader!eslint-loader',
         include: [
-          path.join(__dirname, '../src')
+          path.join(__dirname, './src')
         ],
         exclude: [
-          path.join(__dirname, '../src/util'),
-          path.join(__dirname, '../src/main.js')
-        ],
+          path.join(__dirname, './src/util'),
+          path.join(__dirname, './src/main.js')
+        ]
       },
       {
         test: /\.json$/,
@@ -78,4 +78,5 @@ if (process.env.NODE_ENV === 'production') {
       }
     })
   ])
+  module.exports.output.filename = '[name]-[chunkhash:8].js'
 }

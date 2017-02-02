@@ -31,7 +31,6 @@
 </style>
 
 <script>
-  import fetch from '../../util/restFetch'
   import { unsafeHeaders } from '../../util/headers'
   import handleData from '../../util/handleData'
 
@@ -40,12 +39,7 @@
       return {
         username: '',
         tel: '',
-        password: '',
-
-        registerData: {
-          loading: false,
-          data: {}
-        }
+        password: ''
       }
     },
     methods: {
@@ -79,14 +73,16 @@
         }
 
         if (!this.checkData(data)) return
-        fetch(this.registerData, '/api/user/register/', {
+        this.$store.dispatch('register', {
+          body: JSON.stringify(data),
           method: 'POST',
-          headers: unsafeHeaders,
-          body: JSON.stringify(data)
+          headers: unsafeHeaders
         }).then(data => {
           handleData(this.$message, data)
-        }, () => {
-          this.$message('程序员快放弃写程序吧')
+          if (!data.status) {
+            this.$store.dispatch('profile')
+            this.$router.push('/')
+          }
         })
       }
     }

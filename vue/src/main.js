@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-default/index.css'
 import fixRouter from './fix/router'
 import userRouter from './user/router'
 import indexRouter from './index/router'
+import projectRouter from './project/router'
 
 Vue.use(Element)
 Vue.use(VueRouter)
@@ -18,25 +19,26 @@ Vue.use(Vuex)
 const routes = [
   ...fixRouter,
   ...userRouter,
-  ...indexRouter
+  ...indexRouter,
+  ...projectRouter
 ]
 
 const router = new VueRouter({
   mode: 'history',
   routes
 })
-Vue.config.debug = true
+
+const debug = process.env.NODE_ENV !== 'production'
+Vue.config.debug = debug
 
 new Vue({
   router,
   store,
   el: '#app',
   template: `
-    <div>
     <App>
     <router-view class="view"></router-view>
     </App>
-    </div>
   `,
   components: {
     App
