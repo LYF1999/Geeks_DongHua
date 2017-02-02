@@ -71,12 +71,8 @@ if (process.env.NODE_ENV === 'production') {
       'process.env': {
         NODE_ENV: '"production"'
       }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
     })
   ])
   module.exports.output.filename = '[name]-[chunkhash:8].js'
+  module.exports.devtool = 'cheap-module'
 }

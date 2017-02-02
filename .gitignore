@@ -104,3 +104,4 @@ ENV/
 /static/dist/
 tags
 .vscode/
+/templates/index.html

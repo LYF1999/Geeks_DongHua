@@ -5,8 +5,6 @@ import user from './user/store'
 import project from './project/store'
 import fix from './fix/store'
 
-Vue.use(Vuex)
-
 const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
