@@ -1,17 +1,19 @@
 <template>
   <footer class="container-fluid" style="background-image: url('/static/image/footer.png');height: 100px">
-    <div class="col-sm-4">
-      我们的QQ群：470653746<br/><br/>
-      我们的微信公众号：DHU-GADU
+    <div>
+      我们的QQ群：470653746 <br/>我们的微信公众号：DHU-GADU<br/><br/>
+      <a href="http://www.miibeian.gov.cn" target="_blank">鄂ICP备16013474</a>
+      <br/>
     </div>
-
   </footer>
 </template>
 
 <style>
   footer {
+    position: relative;
+    top: -100px;
     padding: 20px;
-    margin-top: -100px;
+    z-index: 99;
   }
 
   footer * {
