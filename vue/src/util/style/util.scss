@@ -1,9 +1,17 @@
-.vertical-center{
+.vertical-center {
   position: relative;
-  top:50%;
-  transform: translate(0,-50%);
-  -webkit-transform:translate(0,-50%);
-  -o-transform:translate(0,-50%);
-  -ms-tranform:translate(0,-50%);
-  -moz-transform:translate(0,-50%);
+  top: 50%;
+  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  -ms-tranform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+}
+
+.btn-link:active {
+  outline: none !important;
+}
+
+.btn-link:focus {
+  @extend .btn-link:active
 }

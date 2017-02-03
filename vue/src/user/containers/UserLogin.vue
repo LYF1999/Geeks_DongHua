@@ -9,7 +9,7 @@
         </el-input>
       </div>
       <div class="input">
-        <el-input v-model="password" name="password" type="password" placeholder="请输入您的密码">
+        <el-input v-model="password" @keyup.enter="login" name="password" type="password" placeholder="请输入您的密码">
           <template slot="prepend">
             <span class="glyphicon glyphicon-lock"></span>
           </template>
@@ -66,8 +66,10 @@
           method: 'POST'
         }).then(data => {
           handleData(this.$message, data)
-          if (!data.status) this.$store.dispatch('profile')
-          this.$router.push('/')
+          if (!data.status) {
+            this.$store.dispatch('profile')
+            this.$router.push('/')
+          }
         })
       }
     }

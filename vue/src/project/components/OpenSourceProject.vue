@@ -3,10 +3,8 @@
     <div class="col-md-6">
       <el-card>
         <div class="clearfix">
-          <label class="col-xs-3 font-right hidden-xs">名称:</label>
-          <p class="font-left">{{ project.name }}</p>
-          <label class="col-xs-3 font-right hidden-xs">项目地址:</label>
-          <a class="font-left" :href="project.url" style="float: left; clear: right">{{ project.url }}</a>
+          <p>{{ project.name }}</p>
+          <a :href="project.url" style="clear: right">{{ project.url }}</a>
         </div>
         <div v-html="project.message">
         </div>
@@ -23,13 +21,7 @@
 </template>
 
 <style>
-  .font-right {
-    text-align: right;
-  }
 
-  .font-left {
-    text-align: left;
-  }
 </style>
 
 <script>

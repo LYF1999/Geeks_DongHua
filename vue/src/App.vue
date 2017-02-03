@@ -9,6 +9,15 @@
 </template>
 
 <style>
+  @media (max-width: 768px) {
+    .main-container {
+      position: relative;
+      padding-top: 15px;
+      padding-bottom: 125px;
+      min-height: 100%;
+    }
+  }
+
   html {
     height: 100%;
   }
