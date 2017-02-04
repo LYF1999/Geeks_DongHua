@@ -48,12 +48,14 @@
   import myHeader from './share/header'
   import myFooter from './share/footer'
   import './util/style/util.scss'
+  import HttpError from './share/HttpError.vue'
 
   export default {
     name: 'app',
     components: {
       myHeader,
-      myFooter
+      myFooter,
+      HttpError
     },
     created: function () {
       this.$store.dispatch('profile')

@@ -14,6 +14,7 @@
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="profile" v-if="user.data.auth">个人中心</el-dropdown-item>
         <el-dropdown-item command="logout" v-if="user.data.auth">注销</el-dropdown-item>
+        <el-dropdown-item command="myAdmin" v-if="user.data.auth && user.data.is_staff">管理员页面</el-dropdown-item>
         <el-dropdown-item command="login" v-if="user.data.auth === false">登陆</el-dropdown-item>
         <el-dropdown-item command="register" v-if="user.data.auth === false">注册</el-dropdown-item>
       </el-dropdown-menu>
@@ -48,6 +49,7 @@
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="profile">个人中心</el-dropdown-item>
+            <el-dropdown-item command="myAdmin" v-if="user.data.auth && user.data.is_staff">管理员页面</el-dropdown-item>
             <el-dropdown-item command="logout">
               注销
             </el-dropdown-item>
@@ -150,6 +152,9 @@
           this.$store.dispatch('profile')
           this.$router.push('/')
         })
+      },
+      myAdmin: function () {
+        this.$router.push('/myadmin/')
       },
       profile: function () {
         this.$message('别点了， 个人中心根本没写好')

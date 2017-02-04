@@ -19,6 +19,8 @@ class RegisterForm(serializers.Serializer):
     tel = serializers.CharField()
 
     def validate_username(self, username):
+        if re.search(r'admin|root', username, re.I):
+            raise serializers.ValidationError(u'用户名含有非法词汇')
         if not re.match(r'\w+', username):
             raise serializers.ValidationError(u'用户名只允许字母和数字')
         if User.objects.filter(username=username).exists():

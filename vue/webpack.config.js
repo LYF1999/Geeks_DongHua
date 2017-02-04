@@ -63,10 +63,11 @@ module.exports = {
       }
     ]
   },
-  devtool: '#eval-source-map'
+  devtool: 'eval-source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = 'cheap-module'
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
@@ -75,5 +76,4 @@ if (process.env.NODE_ENV === 'production') {
     })
   ])
   module.exports.output.filename = '[name]-[chunkhash:8].js'
-  module.exports.devtool = 'cheap-module'
 }

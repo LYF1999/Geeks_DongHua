@@ -22,7 +22,7 @@ class UserChangeForm(forms.ModelForm):
 
 class UserAdmin(DjangoUserAdmin):
     form = UserChangeForm
-    list_display = ('username', 'full_name', 'tel')
+    list_display = ('username', 'full_name', 'tel', 'is_member')
     search_fields = ('username', 'tel', 'full_name')
 
     list_filter = ('is_staff', 'is_member', 'is_fixer')
@@ -31,7 +31,7 @@ class UserAdmin(DjangoUserAdmin):
         (None, {'fields': ('username', 'password')}),
         ('Personal Info', {'fields': ('full_name', 'email', 'qq', 'tel', 'birthday', 'register_time')}),
         ('Permissions',
-         {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions', 'is_member')}),
+         {'fields': ('is_active', 'is_fixer', 'is_staff', 'is_superuser', 'groups', 'user_permissions', 'is_member')}),
     )
 
 

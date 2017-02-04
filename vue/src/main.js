@@ -6,6 +6,9 @@ import fixRouter from './fix/router'
 import userRouter from './user/router'
 import indexRouter from './index/router'
 import projectRouter from './project/router'
+import myAdmin from './myadmin/router'
+
+import HttpError from './share/HttpError.vue'
 
 Vue.use(Element)
 Vue.use(VueRouter)
@@ -15,7 +18,12 @@ const routes = [
   ...fixRouter,
   ...userRouter,
   ...indexRouter,
-  ...projectRouter
+  ...projectRouter,
+  ...myAdmin,
+  {
+    path: '*',
+    component: HttpError
+  }
 ]
 
 const router = new VueRouter({

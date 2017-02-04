@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import timezone
 
 from myuser.models import User
+from util import format_time
 
 
 class Fault(models.Model):
@@ -31,18 +32,26 @@ class Fix(models.Model):
     appointment_time = models.DateTimeField(u'预约时间', default=timezone.now)
 
     # 维修信息
-    fixer = models.OneToOneField(User, verbose_name='修理员', null=True, default=None)
-    fix_time = models.DateTimeField('修理时间', null=True, default=None)
+    model = models.CharField(max_length=255, null=True, blank=True)
+    fixer = models.ForeignKey(User, verbose_name='修理员', null=True, default=None)
+    fix_time = models.DateTimeField('修理时间', blank=True, null=True)
     is_fix = models.BooleanField('是否维修', default=False)
 
     class Meta:
         verbose_name = '预约名单'
         verbose_name_plural = verbose_name
+        ordering = ('is_fix', '-appointment_time')
 
     def __str__(self):
         return self.name
 
     def __unicode__(self):
         return '%s' % self.name
+
+    def get_appointment_time(self):
+        return format_time(self.appointment_time)
+
+    def get_fix_time(self):
+        return format_time(self.fix_time)
 
 # Create your models here.

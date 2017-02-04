@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.static import static
+from django.shortcuts import render
 
 from config import settings
 from config.router import router
@@ -28,10 +29,15 @@ urlpatterns = [
     url(r'^api/', include(router.urls, namespace='rest_framework')),
 
     url(r'^$', index, name='index'),
-    url(r'fix/$', fix),
+    url(r'^myadmin/', index),
+    url(r'fix/', include('fix.urls')),
     url(r'user/', include('myuser.urls', namespace='myuser')),
     url(r'project/', include('project.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+def handler404(request):
+    return render(request, 'index.html', locals())
