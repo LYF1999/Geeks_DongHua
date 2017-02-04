@@ -48,6 +48,9 @@ class Fix(models.Model):
     def __unicode__(self):
         return '%s' % self.name
 
+    def get_fault(self):
+        return self.fault.name
+
     def get_appointment_time(self):
         return format_time(self.appointment_time)
 
