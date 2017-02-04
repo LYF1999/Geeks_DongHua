@@ -3,7 +3,7 @@ var webpack = require('webpack')
 
 module.exports = {
   entry: {
-    gadu: path.resolve(__dirname, './src/main.js')
+    gadu: path.resolve(__dirname, './src/main.js'),
   },
   output: {
     path: path.resolve(__dirname, '../static/dist/'),
@@ -63,7 +63,7 @@ module.exports = {
       }
     ]
   },
-  devtool: 'eval-source-map'
+  devtool: 'eval-source-map',
 }
 
 if (process.env.NODE_ENV === 'production') {

@@ -1,7 +1,5 @@
-import Element from 'element-ui'
 import App from './App'
 import store from './store'
-import 'element-ui/lib/theme-default/index.css'
 import fixRouter from './fix/router'
 import userRouter from './user/router'
 import indexRouter from './index/router'
@@ -10,7 +8,6 @@ import myAdmin from './myadmin/router'
 
 import HttpError from './share/HttpError.vue'
 
-Vue.use(Element)
 Vue.use(VueRouter)
 
 
