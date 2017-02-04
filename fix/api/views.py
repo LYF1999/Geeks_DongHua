@@ -38,7 +38,7 @@ class FixViewSet(viewsets.ModelViewSet):
 
     @list_route(methods=['GET'], permission_classes=[FixPermission])
     def get_not_receive(self, request):
-        serializer = FixSerializer(Fix.objects.filter(fixer=None), many=True)
+        serializer = FixSerializer(Fix.objects.filter(fixer=None, is_fix=False), many=True)
         return Response(serializer.data)
 
     @list_route(methods=['GET'], permission_classes=[FixPermission])
