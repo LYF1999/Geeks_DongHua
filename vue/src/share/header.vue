@@ -29,7 +29,7 @@
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="appoint">义修预约</el-dropdown-item>
         <el-dropdown-item command="openSource">开源项目</el-dropdown-item>
-        <el-dropdown-item command="software">常用软件</el-dropdown-item>
+        <el-dropdown-item command="software">常用工具</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
 
@@ -42,7 +42,7 @@
         <router-link class="small" to="/project/open_source/">开源项目</router-link>
       </li>
       <li>
-        <router-link class="small" to="/project/software/">常用软件</router-link>
+        <router-link class="small" to="/project/software/">常用工具</router-link>
       </li>
     </ul>
     <ul class="pull-right li-left vertical-center hidden-xs" style="list-style: none">
