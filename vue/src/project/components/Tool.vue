@@ -4,7 +4,7 @@
       <el-card>
         <div class="clearfix">
           <p>{{ software.name }}</p>
-          <span>下载地址:</span><a target="_blank" :href="software.url" style="clear: right">{{ software.url }}</a>
+          <span>链接:</span><a target="_blank" :href="software.url" style="clear: right">{{ software.url }}</a>
         </div>
         <div v-html="software.message">
         </div>

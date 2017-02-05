@@ -1,6 +1,6 @@
 <template>
   <div class="container" style="margin: 30px auto">
-    <Software v-for="item in softwareSet" :software="item"/>
+    <Tool v-for="item in toolSet" :software="item"/>
   </div>
 </template>
 
@@ -8,21 +8,21 @@
 </style>
 
 <script>
-  import Software from '../components/Software.vue'
+  import Tool from '../components/Tool.vue'
   import { mapState } from 'vuex'
   export default{
     data () {
       return {}
     },
     components: {
-      Software
+      Tool
     },
     created: function () {
-      this.$store.dispatch('softwareSet')
+      this.$store.dispatch('toolSet')
     },
     computed: {
       ...mapState({
-        softwareSet: state => state.project.softwareSet.data
+        toolSet: state => state.project.toolSet.data
       })
     }
   }

@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from rest_framework import serializers
 
-from project.models import OpenSourceProject, SoftWare
+from project.models import OpenSourceProject, Tool
 
 
 class OpenSourceProjectSerializer(serializers.ModelSerializer):
@@ -14,5 +14,5 @@ class OpenSourceProjectSerializer(serializers.ModelSerializer):
 
 class SoftwareSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SoftWare
+        model = Tool
         fields = '__all__'

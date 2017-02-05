@@ -1,19 +1,19 @@
 import createRESTAPI from '../createREST'
 
 const openSourceProject = createRESTAPI('openSourceProject', '/api/project/open_source/', Array)
-const softwareSet = createRESTAPI('softwareSet', '/api/project/software/', Array)
+const toolSet = createRESTAPI('toolSet', '/api/project/tools/', Array)
 
 export default {
   state: {
     ...openSourceProject.state,
-    ...softwareSet.state
+    ...toolSet.state
   },
   actions: {
     ...openSourceProject.actions,
-    ...softwareSet.actions
+    ...toolSet.actions
   },
   mutations: {
     ...openSourceProject.mutations,
-    ...softwareSet.mutations
+    ...toolSet.mutations
   }
 }

@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from rest_framework import viewsets, permissions
 
 from project.api.serializers import OpenSourceProjectSerializer, SoftwareSerializer
-from project.models import OpenSourceProject, SoftWare
+from project.models import OpenSourceProject, Tool
 
 
 class OpenSourceProjectViewSet(viewsets.ReadOnlyModelViewSet):
@@ -13,7 +13,7 @@ class OpenSourceProjectViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = OpenSourceProject.objects.all()
 
 
-class SoftwareViewSet(viewsets.ReadOnlyModelViewSet):
+class ToolViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = SoftwareSerializer
     permission_classes = [permissions.AllowAny]
-    queryset = SoftWare.objects.all()
+    queryset = Tool.objects.all()
