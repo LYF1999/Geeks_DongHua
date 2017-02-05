@@ -14,6 +14,7 @@ class LoginForm(serializers.Serializer):
 
 
 class RegisterForm(serializers.Serializer):
+    name = serializers.CharField()
     username = serializers.CharField()
     password = serializers.CharField()
     tel = serializers.CharField()

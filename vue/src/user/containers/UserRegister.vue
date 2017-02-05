@@ -2,6 +2,13 @@
   <div class="container">
     <div class="col-sm-offset-3 col-sm-6" style="padding-top: 40px">
       <div class="input">
+        <el-input v-model="name" placeholder="请输入您的姓名">
+          <template slot="prepend">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </template>
+        </el-input>
+      </div>
+      <div class="input">
         <el-input v-model="username" placeholder="请输入您的用户名">
           <template slot="prepend">
             <span class="glyphicon glyphicon-user"></span>
@@ -37,6 +44,7 @@
   export default{
     data () {
       return {
+        name: '',
         username: '',
         tel: '',
         password: ''
@@ -44,6 +52,11 @@
     },
     methods: {
       checkData: function (data) {
+        if (!data.name) {
+          this.$message.error('姓名没有填写')
+          return false
+        }
+
         if (!data.username) {
           this.$message.error('用户名没有填写')
           return false
@@ -62,11 +75,13 @@
       },
 
       register: function () {
+        const name = this.name
         const username = this.username
         const password = this.password
         const tel = this.tel
 
         const data = {
+          name,
           username,
           password,
           tel

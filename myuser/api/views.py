@@ -44,6 +44,7 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
         form = RegisterForm(data=request.data)
         form.is_valid(raise_exception=True)
         user = User.objects.create_user(
+            full_name=form.data['name'],
             username=form.data['username'],
             password=form.data['password'],
             tel=form.data['tel'],

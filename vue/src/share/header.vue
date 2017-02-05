@@ -49,7 +49,7 @@
       <li v-if="user.data.auth">
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
-            {{ user.data.username }}&nbsp;&nbsp;<i class="glyphicon glyphicon-menu-down"></i>
+            {{ user.data.full_name }}&nbsp;&nbsp;<i class="glyphicon glyphicon-menu-down"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="profile">个人中心</el-dropdown-item>
