@@ -85,11 +85,7 @@
     }
   }
 
-  .user-xs {
-    margin-top: 40px;
-  }
-
-  .list-xs {
+  .user-xs, .list-xs {
     margin-top: 40px;
   }
 
