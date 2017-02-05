@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <el-card>
         <div class="clearfix">
-          <p>{{ software.name }}</p>
+          <h3 style="color: #1D8CE0;">{{ software.name }}</h3>
           <span>链接:</span><a target="_blank" :href="software.url" style="clear: right">{{ software.url }}</a>
         </div>
         <div v-html="software.message">
