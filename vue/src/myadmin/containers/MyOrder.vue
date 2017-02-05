@@ -74,7 +74,7 @@
           <el-table-column
                   prop="mark"
                   label="备注"
-                  style="min-width: 300px"
+                  width="300"
           >
           </el-table-column>
           <el-table-column

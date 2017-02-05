@@ -17,7 +17,7 @@ class FixViewSet(viewsets.ModelViewSet):
     queryset = Fix.objects.all()
     serializer_class = FixSerializer
 
-    @list_route(methods=['POST'], throttle_classes=[FixRateThrottle], permission_classes=[permissions.AllowAny],
+    @list_route(methods=['POST'], throttle_classes=[FixRateThrottle, ], permission_classes=[permissions.AllowAny],
                 serializer_class=AppointmentForm)
     def appointment(self, request):
         form = AppointmentForm(data=request.data)

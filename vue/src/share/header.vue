@@ -13,8 +13,8 @@
       </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="profile" v-if="user.data.auth">个人中心</el-dropdown-item>
-        <el-dropdown-item command="logout" v-if="user.data.auth">注销</el-dropdown-item>
         <el-dropdown-item command="myAdmin" v-if="user.data.auth && user.data.is_staff">管理员页面</el-dropdown-item>
+        <el-dropdown-item command="logout" v-if="user.data.auth">注销</el-dropdown-item>
         <el-dropdown-item command="login" v-if="user.data.auth === false">登陆</el-dropdown-item>
         <el-dropdown-item command="register" v-if="user.data.auth === false">注册</el-dropdown-item>
       </el-dropdown-menu>
@@ -29,6 +29,7 @@
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="appoint">义修预约</el-dropdown-item>
         <el-dropdown-item command="openSource">开源项目</el-dropdown-item>
+        <el-dropdown-item command="software">常用软件</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
 
@@ -39,6 +40,9 @@
       </li>
       <li>
         <router-link class="small" to="/project/open_source/">开源项目</router-link>
+      </li>
+      <li>
+        <router-link class="small" to="/project/software/">常用软件</router-link>
       </li>
     </ul>
     <ul class="pull-right li-left vertical-center hidden-xs" style="list-style: none">
@@ -145,6 +149,9 @@
       },
       openSource: function () {
         this.$router.push('/project/open_source/')
+      },
+      software: function () {
+        this.$router.push('/project/software/')
       },
       logout: function () {
         this.$store.dispatch('logout').then((data) => {

@@ -10,7 +10,6 @@ import HttpError from './share/HttpError.vue'
 
 Vue.use(VueRouter)
 
-
 const routes = [
   ...fixRouter,
   ...userRouter,

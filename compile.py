@@ -36,6 +36,8 @@ def write(str='gadu.js'):
     with open(template_path, 'r') as f:
         html = f.read()
         html = re.sub(str_replaced, str, html)
+        if not str == 'gadu.js':
+            html = re.sub('vue.js', 'vue.min.js', html)
 
     with open(index_path, 'w') as f:
         f.write(html)

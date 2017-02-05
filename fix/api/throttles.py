@@ -4,4 +4,4 @@ from rest_framework.throttling import AnonRateThrottle
 
 class FixRateThrottle(AnonRateThrottle):
     scope = 'fix'
-    rate = '1/minute'
+    rate = '1/m'
