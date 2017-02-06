@@ -55,7 +55,6 @@
 
 <script>
   import fetch from '../../util/restFetch'
-  import { unsafeHeaders } from '../../util/headers'
   import handelData from '../../util/handleData'
 
   export default {
@@ -120,8 +119,6 @@
 
         if (!this.checkData(data)) return
         this.$store.dispatch('appoint', {
-          method: 'POST',
-          headers: unsafeHeaders,
           body: JSON.stringify(data)
         }).then(data => {
           handelData(this.$message, data)

@@ -24,18 +24,13 @@ module.exports = {
     loaders: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader!eslint-loader'
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader!eslint-loader',
+        loader: 'babel-loader',
         include: [
           path.join(__dirname, './src')
-        ],
-        exclude: [
-          path.join(__dirname, './src/util'),
-          path.join(__dirname, './src/main.js'),
-          path.join(__dirname, './src/store.js')
         ]
       },
       {

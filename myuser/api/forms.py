@@ -34,3 +34,8 @@ class RegisterForm(serializers.Serializer):
         if User.objects.filter(tel=tel).exists():
             raise serializers.ValidationError(u"该电话号码已经注册")
         return tel
+
+
+class ModifyProfileForm(serializers.Serializer):
+    name = serializers.CharField()
+    qq = serializers.CharField()

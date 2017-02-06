@@ -133,7 +133,6 @@
         this.dialogShow = false
         this.$store.dispatch('finish', {
           id: this.id,
-          method: 'POST',
           body: JSON.stringify({
             finish: true,
             model: this.model

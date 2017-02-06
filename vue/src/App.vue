@@ -2,7 +2,7 @@
   <div id="app">
     <myHeader :user="user"/>
     <div class="main-container">
-      <slot></slot>
+      <slot name="content"></slot>
     </div>
     <myFooter/>
   </div>

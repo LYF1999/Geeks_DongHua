@@ -109,7 +109,6 @@
       handleReceive (index) {
         this.$store.dispatch('receive', {
           id: this.notReceive.data[index].id,
-          method: 'POST',
           body: JSON.stringify({
             receive: true
           })

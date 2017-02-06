@@ -1,8 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import resAdapter from './resAdapter'
-import { unsafeHeaders } from './util/headers'
 
-const createREST = (funcName, url, type = Object) => {
+const createREST = (funcName, url, type = Object, config = {}) => {
   let REST_API = {
     state: {},
     mutations: {
@@ -27,20 +26,22 @@ const createREST = (funcName, url, type = Object) => {
     },
     actions: {
       [funcName] ({commit}, fetchParams = {}) {
-        fetchParams.credentials = 'include'
+        fetchParams = {
+          credentials: 'include',
+          ...config,
+          ...fetchParams
+        }
         commit('start' + funcName)
-        let params = /:(\w+)[$|/]/g.exec(url)
+        const params = /:(\w+)[$|/]/g.exec(url)
+        let newUrl = url
         if (params != null) {
-          let newParams = params.splice(1)
+          const newParams = params.splice(1)
           for (const index in newParams) {
-            let re = new RegExp(':' + newParams[index], 'g')
-            url = url.replace(re, fetchParams[newParams[index]])
+            const re = new RegExp(':' + newParams[index], 'g')
+            newUrl = url.replace(re, fetchParams[newParams[index]])
           }
         }
-        if (fetchParams.method === 'POST' || fetchParams.method === 'PATCH') {
-          fetchParams.headers = unsafeHeaders
-        }
-        return fetch(url, fetchParams).then(res => {
+        return fetch(newUrl, fetchParams).then(res => {
           return resAdapter(res).then(data => {
             commit(funcName + 'success', data)
             return data

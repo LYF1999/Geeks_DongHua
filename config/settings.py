@@ -34,7 +34,8 @@ MY_APPS = [
     'myuser',
     'fix',
     'myglobal',
-    'project'
+    'project',
+    'blog'
 ]
 
 MY_APPS = [APP + '.apps.' + APP[0].upper() + APP[1:] + 'Config' for APP in MY_APPS]

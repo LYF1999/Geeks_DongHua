@@ -1,6 +1,5 @@
 # coding=utf-8
 from __future__ import unicode_literals
-from myuser.api.serializers import AccountSerializer
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 
@@ -8,7 +7,8 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import list_route
 from rest_framework.response import Response
 
-from myuser.api.forms import LoginForm, RegisterForm
+from myuser.api.serializers import AccountSerializer
+from myuser.api.forms import LoginForm, RegisterForm, ModifyProfileForm
 from myuser.models import User
 
 
@@ -24,9 +24,19 @@ class AccountViewSet(viewsets.ReadOnlyModelViewSet):
             return Response({
                 'auth': False
             })
-        data = serializer = AccountSerializer(user).data
+        data = AccountSerializer(user).data
         data['auth'] = True
         return Response(data)
+
+    @list_route(methods=['PATCH'], permission_classes=[permissions.AllowAny], serializer_class=ModifyProfileForm)
+    def modify_profile(self, request):
+        form = ModifyProfileForm(request.data)
+        form.is_valid(raise_exception=True)
+        user = request.user
+        user.name = form.data['name']
+        user.qq = form.qq['qq']
+        user.save()
+        return Response({'message': '修改成功', 'data': form.data}, status=200)
 
     @list_route(methods=['POST'], serializer_class=LoginForm, permission_classes=[permissions.AllowAny])
     def login(self, request):

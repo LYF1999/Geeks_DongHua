@@ -24,7 +24,6 @@
 </style>
 
 <script>
-  import { unsafeHeaders } from '../../util/headers'
   import handleData from '../../util/handleData'
 
   export default{
@@ -61,9 +60,7 @@
         }
         if (!this.checkData(data)) return
         this.$store.dispatch('login', {
-          headers: unsafeHeaders,
-          body: JSON.stringify(data),
-          method: 'POST'
+          body: JSON.stringify(data)
         }).then(data => {
           handleData(this.$message, data)
           if (!data.status) {

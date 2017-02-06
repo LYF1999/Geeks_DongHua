@@ -4,7 +4,8 @@ import fixRouter from './fix/router'
 import userRouter from './user/router'
 import indexRouter from './index/router'
 import projectRouter from './project/router'
-import myAdmin from './myadmin/router'
+import myAdminRouter from './myadmin/router'
+import blogRouter from './blog/router'
 
 import HttpError from './share/HttpError.vue'
 
@@ -15,7 +16,8 @@ const routes = [
   ...userRouter,
   ...indexRouter,
   ...projectRouter,
-  ...myAdmin,
+  ...myAdminRouter,
+  // ...blogRouter,
   {
     path: '*',
     component: HttpError
@@ -36,7 +38,7 @@ new Vue({
   el: '#app',
   template: `
     <App>
-    <router-view class="view"></router-view>
+    <router-view slot="content" class="view"></router-view>
     </App>
   `,
   components: {

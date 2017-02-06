@@ -8,3 +8,7 @@ def login(request):
 
 def register(request):
     return render(request, 'index.html')
+
+
+def profile(request):
+    return render(request, 'index.html')

@@ -1,6 +1,9 @@
 import createRESTAPI from '../createREST'
+import { unsafeHeaders } from '../util/headers'
 
-const appoint = createRESTAPI('appoint', '/api/fix/appointment/')
+const appoint = createRESTAPI('appoint', '/api/fix/appointment/', Object, {
+  headers: unsafeHeaders
+})
 
 export default {
   state: {

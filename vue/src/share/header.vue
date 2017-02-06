@@ -12,7 +12,7 @@
         </button>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="profile" v-if="user.data.auth">个人中心</el-dropdown-item>
+        <el-dropdown-item command="profile" v-if="user.data.auth">我的信息</el-dropdown-item>
         <el-dropdown-item command="myAdmin" v-if="user.data.auth && user.data.is_staff">管理员页面</el-dropdown-item>
         <el-dropdown-item command="logout" v-if="user.data.auth">注销</el-dropdown-item>
         <el-dropdown-item command="login" v-if="user.data.auth === false">登陆</el-dropdown-item>
@@ -52,7 +52,7 @@
             {{ user.data.full_name }}&nbsp;&nbsp;<i class="glyphicon glyphicon-menu-down"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="profile">个人中心</el-dropdown-item>
+            <el-dropdown-item command="profile">我的信息</el-dropdown-item>
             <el-dropdown-item command="myAdmin" v-if="user.data.auth && user.data.is_staff">管理员页面</el-dropdown-item>
             <el-dropdown-item command="logout">
               注销
@@ -160,11 +160,10 @@
         this.$router.push('/myadmin/')
       },
       profile: function () {
-        this.$message('别点了， 个人中心根本没写好')
+        this.$router.push('/user/profile')
       },
       handleCommand (command) {
         this[command]()
-        console.log(this[command])
       }
     }
   }
