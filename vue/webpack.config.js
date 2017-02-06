@@ -3,7 +3,7 @@ var webpack = require('webpack')
 
 module.exports = {
   entry: {
-    gadu: path.resolve(__dirname, './src/main.js'),
+    gadu: path.resolve(__dirname, './src/main.js')
   },
   output: {
     path: path.resolve(__dirname, '../static/dist/'),
@@ -21,17 +21,42 @@ module.exports = {
     modules: [path.join(__dirname, '../node_modules')]
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        exclude: [
+          path.join(__dirname, './src/blog/containers/EditBlog.vue')
+        ],
+        enforce: 'pre',
+        use: [{
+          loader: 'eslint-loader',
+          options: {
+            rules: {semi: 0},
+            eslint: {
+              configFile: 'path/.eslintrc'
+            }
+          }
+        }]
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: [
-          path.join(__dirname, './src')
-        ]
+        exclude: [
+          /node_modules/,
+          path.join(__dirname, './src/util'),
+          path.join(__dirname, './src/main.js'),
+          path.join(__dirname, './src/store.js')
+        ],
+        enforce: 'pre',
+        use: [{loader: 'eslint-loader', options: {rules: {semi: 0}}}]
+      },
+      {
+        test: /\.vue$/,
+        use: [{loader: 'vue-loader'}]
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [{loader: 'babel-loader'}]
       },
       {
         test: /\.json$/,

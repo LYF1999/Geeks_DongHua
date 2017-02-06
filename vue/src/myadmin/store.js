@@ -7,7 +7,7 @@ const receive = createRESTAPI('receive', '/api/fix/:id/receive/', Object, {
   headers: unsafeHeaders
 })
 const myOrder = createRESTAPI('myOrder', '/api/fix/get_my_order/', Array)
-const finish = createRESTAPI('finish', '/api/fix/:id/finish/', {
+const finish = createRESTAPI('finish', '/api/fix/:id/finish/', Object, {
   method: 'POST',
   headers: unsafeHeaders
 })
