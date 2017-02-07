@@ -10,10 +10,12 @@ from util import format_time
 
 class Fault(models.Model):
     name = models.CharField('故障', max_length=255)
+    order = models.IntegerField('排序', null=True, blank=True)
 
     class Meta:
         verbose_name = '故障列表'
         verbose_name_plural = verbose_name
+        ordering = ('order',)
 
     def __str__(self):
         return self.name
