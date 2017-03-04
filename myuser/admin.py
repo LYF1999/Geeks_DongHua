@@ -9,7 +9,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField(
         label='Password',
-        help_text="要修改密码, 请用<a href=\"password\">这个表单</a>进行修改"
+        help_text="要修改密码, 请用<a href=\"../password/\">这个表单</a>进行修改"
     )
 
     class Meta:
