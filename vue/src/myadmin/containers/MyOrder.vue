@@ -13,6 +13,7 @@
               <p v-if="myOrder.data[props.$index].is_fix" style="color: #13CE66;font-size: 16px">已经完成</p>
               <p>故障: {{ props.row.fault }}</p>
               <p>电话: {{ props.row.tel }}</p>
+              <p>电脑机型: {{ props.row.model }}</p>
               <p>{{ props.row.appointment_time }}</p>
               <p>备注: {{ props.row.mark }}</p>
               <el-button v-if="!myOrder.data[props.$index].is_fix" @click.native.prevent="handleFinish(props.$index)"
@@ -65,6 +66,11 @@
                   width="200"
           >
           </el-table-column>
+          <el-table-column
+                  prop="model"
+                  label="电脑机型"
+                  width="150"
+          ></el-table-column>
           <el-table-column
                   prop="appointment_time"
                   label="预约时间"
