@@ -11,18 +11,17 @@ const recruit = createRESTAPI('recruit', '/api/fix/recruit/', Object, {
   headers: unsafeHeaders
 })
 
-
 export default {
   state: {
     ...appoint.state,
-    ...recruit.state,
+    ...recruit.state
   },
   actions: {
     ...appoint.actions,
-    ...recruit.actions,
+    ...recruit.actions
   },
   mutations: {
     ...appoint.mutations,
-    ...recruit.mutations,
+    ...recruit.mutations
   }
 }
