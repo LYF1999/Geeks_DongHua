@@ -30,6 +30,7 @@ urlpatterns = [
 
     url(r'^$', index, name='index'),
     url(r'^myadmin/', index),
+    url(r'needyou/', index),
     url(r'^blog/', include('blog.urls')),
     url(r'fix/', include('fix.urls')),
     url(r'user/', include('myuser.urls', namespace='myuser')),
