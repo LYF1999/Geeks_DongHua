@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 50%; margin: 40px auto">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2" style="margin-top: 40px; margin-bottom: 40px">
     <el-form ref="form" label-width="80px">
       <el-form-item label="姓名">
         <el-input v-model="name">
@@ -27,14 +27,14 @@
         </el-input>
       </el-form-item>
       <el-form-item label="个人爱好">
-        <el-input type="textarea" v-model="desc">
+        <el-input type="textarea" v-model="desc" rows="4">
           <template slot="prepend">
             <span class="glyphicon glyphicon-heart"></span>
           </template>
         </el-input>
       </el-form-item>
       <el-form-item label="胜任理由">
-        <el-input type="textarea" v-model="reason">
+        <el-input type="textarea" v-model="reason" rows="4">
           <template slot="prepend">
             <span class="glyphicon glyphicon-tag"></span>
           </template>

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from fix.models import Fault, Fix
+from fix.models import Fault, Fix, Recruit
 
 
 class FaultAdmin(admin.ModelAdmin):
@@ -13,6 +13,11 @@ class FixAdmin(admin.ModelAdmin):
     search_fields = ('name', 'tel')
 
 
+class RecruitAdmin(admin.ModelAdmin):
+    list_display = ('name', 'tel', 'desc')
+
+
 admin.site.register(Fix, FixAdmin)
 admin.site.register(Fault, FaultAdmin)
+admin.site.register(Recruit, RecruitAdmin)
 # Register your models here.
