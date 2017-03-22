@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from fix.models import Fix, Fault
+from fix.models import Fix, Fault, Recruit
 
 
 class FixSerializer(serializers.ModelSerializer):
@@ -19,3 +19,9 @@ class FaultSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fault
         fields = ['label', 'value']
+
+
+class RecruitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recruit
+        fields = '__all__'

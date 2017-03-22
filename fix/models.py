@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import timezone
 
 from myuser.models import User
+from myuser.constants import Sex_Choice
 from util import format_time
 
 
@@ -58,5 +59,14 @@ class Fix(models.Model):
 
     def get_fix_time(self):
         return format_time(self.fix_time)
+
+
+class Recruit(models.Model):
+    name = models.CharField('姓名', max_length=255)
+    sex = models.IntegerField('性别', choices=Sex_Choice)
+    tel = models.CharField('电话', max_length=255)
+    major = models.CharField('专业', max_length=255)
+    desc = models.TextField()
+    reason = models.TextField(blank=True, null=True)
 
 # Create your models here.

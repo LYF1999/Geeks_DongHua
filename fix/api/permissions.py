@@ -12,3 +12,13 @@ class FixPermission(permissions.BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return True
+
+
+class RecruitPermission(permissions.BasePermission):
+    message = '您无权操作'
+
+    def has_permission(self, request, view):
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        return request.user.is_superuser

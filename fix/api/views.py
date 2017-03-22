@@ -5,11 +5,11 @@ from rest_framework.response import Response
 from rest_framework.decorators import list_route, detail_route
 
 from myglobal.models import FixStatus
-from fix.api.serializers import FixSerializer, FaultSerializer
+from fix.api.serializers import FixSerializer, FaultSerializer, RecruitSerializer
 from fix.api.permissions import FixPermission
 from fix.api.forms import AppointmentForm
 from fix.api.throttles import FixRateThrottle
-from fix.models import Fix, Fault
+from fix.models import Fix, Fault, Recruit
 
 
 class FixViewSet(viewsets.ModelViewSet):
@@ -87,3 +87,13 @@ class FixViewSet(viewsets.ModelViewSet):
             'data': FixSerializer(fix_order).data,
             'message': '恭喜您又完成了一次义修'
         }, status=200)
+
+
+class RecruitViewSet(viewsets.ModelViewSet):
+    serializer_class = RecruitSerializer
+    permission_classes = [permissions.AllowAny]
+    throttle_classes = [FixRateThrottle, ]
+
+    def get_queryset(self):
+        if self.request.user.is_staff:
+            return Recruit.objects.all()
