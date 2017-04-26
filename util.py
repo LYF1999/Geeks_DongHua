@@ -32,6 +32,7 @@ def get_fix_excel():
         new_ws.cell(row=row, column=6).value = '2016'
         new_ws.cell(row=row, column=7).value = fix.model
         new_ws.cell(row=row, column=8).value = fix.fault.name
+        new_ws.cell(row=row, column=9).value = fix.appointment_time
         row += 1
         index += 1
 
