@@ -13,7 +13,7 @@ def export_member():
 
     for user in users:
         new_ws.cell(row=row, column=1).value = row
-        new_ws.cell(row=row, column=2).value = user.name
+        new_ws.cell(row=row, column=2).value = user.full_name
         row += 1
 
     wb.save(filename='student.xlsx')
