@@ -28,15 +28,7 @@ module.exports = {
           path.join(__dirname, './src/blog/containers/EditBlog.vue')
         ],
         enforce: 'pre',
-        use: [{
-          loader: 'eslint-loader',
-          options: {
-            rules: {semi: 0},
-            eslint: {
-              configFile: 'path/.eslintrc'
-            }
-          }
-        }]
+        use: []
       },
       {
         test: /\.js$/,
