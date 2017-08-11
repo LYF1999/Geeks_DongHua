@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Element from 'element-ui';
+import Element from 'element-ui'
 import Vuex from 'vuex'
 import App from './App.vue'
 import store from './store'

@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 0 100px; min-width: 350px">
+  <div class="im-content">
     <el-card class="box-card" style="height: 400px; overflow: scroll" id="im">
       <ul id="example-1" style="list-style: none">
         <li v-for="event in events">
@@ -30,6 +30,18 @@
 </template>
 
 <style>
+  @media screen and (max-width: 768px) {
+    .im-content {
+      margin: 0 auto;
+      width: 350px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .im-content {
+      padding: 0 100px;
+    }
+  }
 </style>
 
 <script>
