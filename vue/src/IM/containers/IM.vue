@@ -81,7 +81,7 @@
     components: {},
     updated() {
       if (this.user.username && !this.socket) {
-        this.socket = new WebSocket('ws://' + window.location.host + '/api/message?name=' + this.user.username);
+        this.socket = new WebSocket('wss://' + window.location.host + '/api/message?name=' + this.user.username);
         this.socket.onmessage = this.onMessage;
       }
       if (!this.imDiv) {
