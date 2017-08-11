@@ -6,10 +6,14 @@
           <p style="text-align: center" v-if="event.Type === 1">{{ event.User }}加入了聊天室</p>
           <p style="text-align: center" v-if="event.Type === 2">{{ event.User }}离开了聊天室</p>
           <div style="padding: 10px" v-if="event.Content !== '' && event.Type === 3 && event.User !== user.username">
-            <div style="text-align: left"><p style="margin-left: 25px">{{ event.User }}:</p><pre style="margin: 15px 20px 20px 0">{{ event.Content }}</pre></div>
+            <div style="text-align: left"><p style="margin-left: 25px">{{ event.User }}:</p>
+              <pre style="margin: 15px 20px 20px 0">{{ event.Content }}</pre>
+            </div>
           </div>
           <div style="padding: 10px" v-if="event.Content !== '' && event.Type === 3 && event.User === user.username">
-            <div style="text-align: right"><p style="margin-right: 25px">{{ event.User }}:</p><pre style="margin: 15px 20px 20px 0">{{ event.Content }}</pre></div>
+            <div style="text-align: right"><p style="margin-right: 25px">{{ event.User }}:</p>
+              <pre style="margin: 15px 20px 20px 0">{{ event.Content }}</pre>
+            </div>
           </div>
         </li>
       </ul>
@@ -77,13 +81,13 @@
     components: {},
     updated() {
       if (this.user.username && !this.socket) {
-        this.socket = new WebSocket('ws://' + 'localhost:8080' + '/api/message?name=' + this.user.username);
+        this.socket = new WebSocket('ws://' + window.location.host + '/api/message?name=' + this.user.username);
         this.socket.onmessage = this.onMessage;
       }
       if (!this.imDiv) {
-          this.imDiv = document.getElementById('im');
-        }
-        this.imDiv.scrollTop = this.imDiv.scrollHeight;
+        this.imDiv = document.getElementById('im');
+      }
+      this.imDiv.scrollTop = this.imDiv.scrollHeight;
     },
     computed: {
       ...mapState({
