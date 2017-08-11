@@ -47,7 +47,7 @@ module.exports = {
           path.join(__dirname, './src/store.js')
         ],
         enforce: 'pre',
-        use: [{loader: 'eslint-loader', options: {rules: {semi: 0}}}]
+        use: [],
       },
       {
         test: /\.vue$/,
