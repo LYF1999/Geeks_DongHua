@@ -1,5 +1,6 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -85,7 +86,13 @@ if (process.env.NODE_ENV === 'production') {
       'process.env': {
         NODE_ENV: '"production"'
       }
+    }),
+    new UglifyJSPlugin({
+      parallel: {
+        cache: true,
+        workers: true,
+      }
     })
-  ])
+  ]);
   module.exports.output.filename = '[name]-[chunkhash:8].js'
 }

@@ -10,6 +10,7 @@ import indexRouter from './index/router'
 import projectRouter from './project/router'
 import myAdminRouter from './myadmin/router'
 import IMRouter from './IM/router'
+import JoinRouter from './join/router'
 
 import HttpError from './share/HttpError.vue'
 
@@ -24,6 +25,7 @@ const routes = [
   ...projectRouter,
   ...myAdminRouter,
   ...IMRouter,
+  ...JoinRouter,
   // ...blogRouter,
   {
     path: '*',
