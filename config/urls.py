@@ -23,6 +23,9 @@ from config.router import router
 from home import index
 from fix.views import fix
 
+
+# this is a new line
+
 urlpatterns = [
     url(r'^admin/+', admin.site.urls),
 
